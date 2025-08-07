@@ -19,7 +19,10 @@
                 <button class="btn btn-bd-primary-1 btn-lg mb-3">View <br> History</button>
             </div>
             <div class="col-md-4 text-center">
-                <button class="btn btn-bd-primary-2 btn-lg mb-3">Create <br> Games</button>
+                <router-link to ="/games/create">
+                    <button class="btn btn-bd-primary-2 btn-lg mb-3">Create <br> Games</button>
+                </router-link>
+                
             </div>
             <div class="col-md-4 text-center">
                 <button class="btn btn-bd-primary-3 btn-lg mb-3">Leaderboard</button>
