@@ -1,0 +1,6 @@
+@fizzbozo_be_HostAddress = http://localhost:5052
+
+GET {{fizzbozo_be_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
