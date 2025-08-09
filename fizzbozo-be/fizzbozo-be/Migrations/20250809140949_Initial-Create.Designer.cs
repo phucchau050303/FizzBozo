@@ -13,8 +13,8 @@ using fizzbozo_be.Data;
 namespace fizzbozo_be.Migrations
 {
     [DbContext(typeof(FizzBozoDbContext))]
-    [Migration("20250807145714_Initial_Create")]
-    partial class Initial_Create
+    [Migration("20250809140949_Initial-Create")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
