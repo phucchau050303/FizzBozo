@@ -32,7 +32,8 @@ namespace fizzbozo_be.Data
             modelBuilder.Entity<Game>()
                 .HasMany(g => g.Rules)
                 .WithOne(r => r.Game)
-                .HasForeignKey(r => r.GameId);
+                .HasForeignKey(r => r.GameId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Game>()
                 .HasMany(g => g.GameSessions)
