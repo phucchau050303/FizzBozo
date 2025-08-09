@@ -1,6 +1,8 @@
 
 using fizzbozo_be.Data;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Text.Json.Serialization;
 
 namespace fizzbozo_be
 {
@@ -14,7 +16,11 @@ namespace fizzbozo_be
             builder.Services.AddDbContext<FizzBozoDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                options.JsonSerializerOptions.WriteIndented = true;
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
