@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  fizzbozo-fe:
+    build:
+      context: ./fizzbozo-fe
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - fizzbozo-be
+
+  fizzbozo-be:
+    build:
+      context: ./fizzbozo-be
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Database=fizzbozo_db;Username=admin;Password=password
+      
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: fizzbuzz_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: phcchu88
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
