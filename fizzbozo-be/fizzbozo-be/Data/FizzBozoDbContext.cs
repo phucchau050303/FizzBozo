@@ -26,7 +26,7 @@ namespace fizzbozo_be.Data
             // Configure one-to-one relationship between GameSession and Result
             modelBuilder.Entity<GameSession>()
                 .HasOne(gs => gs.Result)
-                .WithOne(g => g.GameSession)
+                .WithOne(r => r.GameSession)
                 .HasForeignKey<Result>(r => r.SessionId);
             // Configure other relationships
             modelBuilder.Entity<Game>()
