@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace fizzbozo_be.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class UpdateToGuidKeys : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,9 +58,7 @@ namespace fizzbozo_be.Migrations
                 name: "Sessions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    SessionId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     PlayerName = table.Column<string>(type: "text", nullable: false),
                     DurationSeconds = table.Column<int>(type: "integer", nullable: false),
                     StartedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -89,8 +87,8 @@ namespace fizzbozo_be.Migrations
                     ExpectedAnswer = table.Column<string>(type: "text", nullable: false),
                     PlayerAnswer = table.Column<string>(type: "text", nullable: false),
                     IsCorrect = table.Column<bool>(type: "boolean", nullable: false),
-                    AnswerAt = table.Column<string>(type: "text", nullable: false),
-                    SessionId = table.Column<int>(type: "integer", nullable: false)
+                    AnsweredAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    SessionId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,7 +111,7 @@ namespace fizzbozo_be.Migrations
                     CorrectAnswers = table.Column<int>(type: "integer", nullable: false),
                     WrongAnswers = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    SessionId = table.Column<int>(type: "integer", nullable: false)
+                    SessionId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {

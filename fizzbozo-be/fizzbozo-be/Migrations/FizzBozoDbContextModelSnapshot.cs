@@ -70,9 +70,8 @@ namespace fizzbozo_be.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AnswerAt")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("AnsweredAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ExpectedAnswer")
                         .IsRequired()
@@ -88,8 +87,8 @@ namespace fizzbozo_be.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -100,11 +99,9 @@ namespace fizzbozo_be.Migrations
 
             modelBuilder.Entity("fizzbozo_be.Entities.GameSession", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<int>("DurationSeconds")
                         .HasColumnType("integer");
@@ -122,9 +119,6 @@ namespace fizzbozo_be.Migrations
                     b.Property<string>("PlayerName")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<Guid>("SessionId")
-                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("StartedAt")
                         .HasColumnType("timestamp with time zone");
@@ -150,8 +144,8 @@ namespace fizzbozo_be.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("TotalAnswers")
                         .HasColumnType("integer");
