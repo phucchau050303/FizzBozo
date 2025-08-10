@@ -7,10 +7,10 @@
         public string ExpectedAnswer { get; set; } = string.Empty;
         public string PlayerAnswer { get; set; } = string.Empty;
         public bool IsCorrect {  get; set; }
-        public string AnswerAt { get; set; } = string.Empty;
+        public DateTime AnsweredAt { get; set; } = DateTime.UtcNow;
 
         // Foreign key
-        public int SessionId { get; set; }
+        public Guid SessionId { get; set; }
         public GameSession GameSession { get; set; }
     }
 }

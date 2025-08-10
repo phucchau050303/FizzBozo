@@ -2,8 +2,7 @@
 {
     public class GameSession
     {
-        public int Id { get; set; }
-        public Guid SessionId { get; set; }
+        public Guid Id { get; set; }
         public string PlayerName { get; set; } = string.Empty;
         public int DurationSeconds { get; set; }
         public DateTime StartedAt { get; set; }

@@ -9,7 +9,7 @@
             public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
             // Foreign key
-            public int SessionId { get; set; }
+            public Guid SessionId { get; set; }
             public GameSession GameSession { get; set; }
     }
 }
