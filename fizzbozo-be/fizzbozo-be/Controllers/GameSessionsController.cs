@@ -11,8 +11,8 @@ namespace fizzbozo_be.Controllers
     [ApiController]
     public class GameSessionsController : ControllerBase
     {
-        private readonly FizzBozoDbContext _context;
-        private readonly Random _random = new();
+        private  FizzBozoDbContext _context;
+        private  Random _random = new();
 
         public GameSessionsController (FizzBozoDbContext context)
         {

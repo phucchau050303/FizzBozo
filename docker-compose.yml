@@ -6,28 +6,36 @@ services:
       context: ./fizzbozo-fe
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "3000:80"  # Map host 3000 to container 80
     depends_on:
       - fizzbozo-be
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://fizzbozo-be:8080
 
   fizzbozo-be:
     build:
-      context: ./fizzbozo-be
+      context: ./fizzbozo-be/fizzbozo-be
       dockerfile: Dockerfile
     depends_on:
       - db
     ports:
-      - "5000:5000"
+      - "8080:8080"  # Match the exposed port
     environment:
-      - ConnectionStrings__DefaultConnection=Host=db;Database=fizzbozo_db;Username=admin;Password=password
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=db;Database=postgres;Username=postgres;Password=123
       
   db:
     image: postgres:latest
     environment:
-      POSTGRES_DB: fizzbuzz_db
+      POSTGRES_DB: postgres
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: phcchu88
+      POSTGRES_PASSWORD: '123'
     volumes:
       - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Optional, only if you need external access
+
 volumes:
   db_data:

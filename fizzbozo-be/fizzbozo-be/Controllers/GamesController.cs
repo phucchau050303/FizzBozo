@@ -15,7 +15,7 @@ namespace fizzbozo_be.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
-        private readonly FizzBozoDbContext _context;
+        private  FizzBozoDbContext _context;
 
         public GamesController(FizzBozoDbContext context)
         {

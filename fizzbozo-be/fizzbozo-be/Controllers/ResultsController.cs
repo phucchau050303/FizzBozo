@@ -10,7 +10,7 @@ namespace fizzbozo_be.Controllers
     [ApiController]
     public class ResultsController : ControllerBase
     {
-        private readonly FizzBozoDbContext _context;
+        private  FizzBozoDbContext _context;
 
         public ResultsController (FizzBozoDbContext context)
         {
