@@ -65,7 +65,8 @@ export default {
             </div>
 
             <div class = "row mt-4">
-                <div class="col-md-4">
+
+                <router-link to="/games/create" class="col-md-4">
                     <div class="card fizzbozo-card">
                         <div class="card-body d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -73,8 +74,8 @@ export default {
                             </svg>
                         </div>
                     </div>
-                </div>
-                <div v-for="game in games" :key="game.id" class="col-md-4">
+                </router-link>
+                <div v-for="game in games" :key="game.id" class="col-md-4 mb-4">
                     <div class="card fizzbozo-card fizzbozo-card-content" style = "background-color: #fffefe;" @click="handleClick" >
                         <div class="card-body text-center">
                             <h4 class="card-title  mt-2 mb-4">{{ game.name }}</h4>
