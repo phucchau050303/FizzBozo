@@ -18,7 +18,7 @@
                         <router-link class="nav-link" to="/games">Games</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/">History</router-link>
+                        <router-link class="nav-link" to="/history">History</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/">Leaderboard</router-link>

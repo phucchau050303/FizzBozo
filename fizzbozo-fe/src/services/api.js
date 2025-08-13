@@ -29,11 +29,15 @@ export default {
         return apiClient.get(`/sessions`, { params: { sessionId } });
     },
     submitAnswer(sessionId, answerData) {
-    // The first argument is the URL, the second is the data (body), and the third is the config.
-    // The 'params' key must be inside the config object.
     return apiClient.post(`/sessions/answer`, answerData, { params: { sessionId } });
     },
     createSessionResults(sessionId) {
         return apiClient.post(`/results`,null, { params: { sessionId } });
+    },
+    getHistory(playerName) {
+        return apiClient.get('/results/name', { params: { playerName } });
+    },
+    getLeaderboard() {
+        return apiClient.get('/results/leaderboard');
     }
 }

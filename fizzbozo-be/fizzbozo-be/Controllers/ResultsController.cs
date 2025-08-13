@@ -62,6 +62,7 @@ namespace fizzbozo_be.Controllers
                 {
                     PlayerName = r.GameSession.PlayerName,
                     Score = r.CorrectAnswers,
+                    GameDuration = r.GameSession.DurationSeconds,
                     Date = r.CreatedAt
                 })
                 .ToList();
@@ -82,12 +83,6 @@ namespace fizzbozo_be.Controllers
                 .Include(r => r.GameSession)
                 .Where(r => r.GameSession.PlayerName == playerName)
                 .OrderByDescending(r => r.CorrectAnswers)
-                .Select(r => new LeaderboardEntryDto
-                {
-                    PlayerName = r.GameSession.PlayerName,
-                    Score = r.CorrectAnswers,
-                    Date = r.CreatedAt
-                })
                 .ToList();
             try
             {

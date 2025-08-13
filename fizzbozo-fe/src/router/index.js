@@ -3,7 +3,7 @@ import Home from '../views/HomeView.vue' // Import your components
 import GameManagementView from '../views/GameManagementView.vue'
 import GameCreateView from '../views/GameCreateView.vue'
 import GameSession from '../components/GameSession.vue'
-// import History from '../views/History.vue'
+import History from '../components/History.vue'
 // import Leaderboard from '../views/Leaderboard.vue'
 
 const routes = [
@@ -32,12 +32,12 @@ const routes = [
       duration: Number(route.query.duration),
       playerName: route.query.playerName
     })
-  }
-//   {
-//     path: '/history',
-//     name: 'History',
-//     component: History
-//   },
+  },
+  {
+    path: '/history',
+    name: 'History',
+    component: History
+  },
 //   {
 //     path: '/leaderboard',
 //     name: 'Leaderboard',

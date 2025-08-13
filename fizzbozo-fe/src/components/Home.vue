@@ -9,14 +9,20 @@
         <p class="text-center home-text">Unlimited Experience</p>
         <div class = "row mt-4">
             <div class="d-flex justify-content-center align-items-center flex-column">
-                <button class="btn btn-bd-primary btn-lg mb-3">Play Now</button>
+                <router-link to="/games">
+                    <button class="btn btn-bd-primary btn-lg mb-3">Play Now</button>
+                </router-link>
+
             </div>
         </div>
         <p class="text-center home-text mt-4">Got other things in mind? Checkout these options</p>
             <div class="container mt-5">
         <div class="row">
             <div class="col-md-4 text-center"> 
-                <button class="btn btn-bd-primary-1 btn-lg mb-3">View <br> History</button>
+                <router-link to ="/history">
+                    <button class="btn btn-bd-primary-1 btn-lg mb-3">View <br> History</button>
+                </router-link>
+                
             </div>
             <div class="col-md-4 text-center">
                 <router-link to ="/games/create">
