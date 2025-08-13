@@ -4,7 +4,7 @@ import GameManagementView from '../views/GameManagementView.vue'
 import GameCreateView from '../views/GameCreateView.vue'
 import GameSession from '../components/GameSession.vue'
 import History from '../components/History.vue'
-// import Leaderboard from '../views/Leaderboard.vue'
+import Leaderboard from '../components/Leaderboard.vue'
 
 const routes = [
   {
@@ -38,11 +38,11 @@ const routes = [
     name: 'History',
     component: History
   },
-//   {
-//     path: '/leaderboard',
-//     name: 'Leaderboard',
-//     component: Leaderboard
-//   }
+  {
+    path: '/leaderboard',
+    name: 'Leaderboard',
+    component: Leaderboard
+  }
 ]
 
 const router = createRouter({

@@ -21,7 +21,7 @@
                         <router-link class="nav-link" to="/history">History</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/">Leaderboard</router-link>
+                        <router-link class="nav-link" to="/leaderboard">Leaderboard</router-link>
                     </li>
                 </ul>
             </div>

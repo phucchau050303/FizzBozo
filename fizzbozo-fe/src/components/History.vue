@@ -5,7 +5,6 @@ export default {
     data() {
         return {
             history: [],
-            loading: true,
             error: null,
             playerName: ''
         };
@@ -22,8 +21,6 @@ export default {
             } catch (error) {
                 this.error = error.message;
                 console.error('Error fetching game history:', error);
-            } finally {
-                this.loading = false;
             }
         }
     },
