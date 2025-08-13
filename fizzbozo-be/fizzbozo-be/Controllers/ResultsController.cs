@@ -18,7 +18,7 @@ namespace fizzbozo_be.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateResult(Guid sessionId)
+        public async Task<IActionResult> CreateResult([FromQuery] Guid sessionId)
         {
             var session = _context.Sessions
                 .Include(s => s.GameQuestions)
@@ -35,6 +35,7 @@ namespace fizzbozo_be.Controllers
                 CorrectAnswers = session.GameQuestions.Count(q => q.IsCorrect),
                 WrongAnswers = session.GameQuestions.Count(q => !q.IsCorrect),
                 CreatedAt = DateTime.UtcNow,
+                SessionId = sessionId
             };
 
             try
@@ -51,10 +52,10 @@ namespace fizzbozo_be.Controllers
         }
 
         [HttpGet("leaderboard")]
-        public IActionResult GetLeaderboard ([FromQuery] int gameId)
+        public IActionResult GetLeaderboard()
         {
             var result = _context.Results
-                .Where(r => r.GameSession.GameId == gameId)
+                .Include(r => r.GameSession)
                 .OrderByDescending(r => r.CorrectAnswers)
                 .Take(10)
                 .Select(r => new LeaderboardEntryDto
@@ -74,10 +75,11 @@ namespace fizzbozo_be.Controllers
             }
         }
 
-        [HttpGet("{playerName}")]
-        public IActionResult GetResultByName(string playerName)
+        [HttpGet("name")]
+        public IActionResult GetResultByName([FromQuery] string playerName)
         {
             var result = _context.Results
+                .Include(r => r.GameSession)
                 .Where(r => r.GameSession.PlayerName == playerName)
                 .OrderByDescending(r => r.CorrectAnswers)
                 .Select(r => new LeaderboardEntryDto

@@ -17,6 +17,7 @@ export default {
     error : null,
     rules: {},
     duration: 0,
+    playerName: '',
     };
   },
   watch: {
@@ -53,17 +54,36 @@ export default {
         alert('Failed to load game details. Please try again later.');
       }
     },
-  outputRules() {
-    // Add check to ensure rules exists and is iterable
-    if (!this.rules || !Array.isArray(this.rules)) {
-      console.log('Rules is not an array or is empty', this.rules);
-      return;
+    outputRules() {
+      // Add check to ensure rules exists and is iterable
+      if (!this.rules || !Array.isArray(this.rules)) {
+        console.log('Rules is not an array or is empty', this.rules);
+        return;
+      }
+      
+      for (const rule of this.rules) {
+        console.log(`If number is divided by ${rule.dividedBy}, then answer by "${rule.associatedWord}"`);
+      }
+    },
+    startGameSession() {
+      if (!this.playerName.trim()) {
+        alert('Please enter your name to start the game.');
+        return;
+      }
+      if (this.duration <= 0) {
+        alert('Please enter a valid game duration.');
+        return;
+      }
+      
+      this.$router.push({
+        name: 'Game Session',
+        query: {
+          gameId: this.gameId,
+          duration: this.duration,
+          playerName: this.playerName
+        }
+      });
     }
-    
-    for (const rule of this.rules) {
-      console.log(`If number is divided by ${rule.dividedBy}, then answer by "${rule.associatedWord}"`);
-    }
-  }
   }
 };
 </script>
@@ -92,11 +112,15 @@ export default {
                 <label class="form-label">Game Duration (minute):</label>
                 <input class="form-control" type="number" placeholder="Enter duration" v-model="duration"></input>
               </div>
+              <div class="mb-3">
+                <label class="form-label">Player Name:</label>
+                <input class="form-control" type="text" placeholder="Enter your name" v-model="playerName"></input>
+              </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-            <button type="button" class="btn btn-primary">Play Game</button>
+            <button type="submit" class="btn btn-primary" @click="startGameSession">Play Game</button>
           </div>
         </div>
       </div>

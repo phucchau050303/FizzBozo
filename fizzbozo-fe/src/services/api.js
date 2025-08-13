@@ -21,5 +21,19 @@ export default {
     },
         deleteGame(id) {
         return apiClient.delete(`/games/${id}`);
+    },
+    createGameSession(sessionData) {
+        return apiClient.post(`/sessions`, sessionData);
+    },
+    getNextNumber(sessionId){
+        return apiClient.get(`/sessions`, { params: { sessionId } });
+    },
+    submitAnswer(sessionId, answerData) {
+    // The first argument is the URL, the second is the data (body), and the third is the config.
+    // The 'params' key must be inside the config object.
+    return apiClient.post(`/sessions/answer`, answerData, { params: { sessionId } });
+    },
+    createSessionResults(sessionId) {
+        return apiClient.post(`/results`,null, { params: { sessionId } });
     }
 }

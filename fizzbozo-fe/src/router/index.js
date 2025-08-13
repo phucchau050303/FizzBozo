@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/HomeView.vue' // Import your components
 import GameManagementView from '../views/GameManagementView.vue'
 import GameCreateView from '../views/GameCreateView.vue'
+import GameSession from '../components/GameSession.vue'
 // import History from '../views/History.vue'
 // import Leaderboard from '../views/Leaderboard.vue'
 
@@ -21,6 +22,17 @@ const routes = [
     name: 'Create Game',
     component: GameCreateView
   },
+  {
+    // path: '/games/:gameId',
+    path: '/games/session',
+    name: 'Game Session',
+    component: GameSession,
+    props: (route) => ({
+      gameId: Number(route.query.gameId),
+      duration: Number(route.query.duration),
+      playerName: route.query.playerName
+    })
+  }
 //   {
 //     path: '/history',
 //     name: 'History',

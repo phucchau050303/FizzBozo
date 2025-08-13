@@ -47,7 +47,7 @@ namespace fizzbozo_be.Controllers
 
         //Get a new random Number
         [HttpGet]
-        public IActionResult GetNextNumber(Guid SessionId)
+        public IActionResult GetNextNumber([FromQuery] Guid SessionId)
         {
             var session = _context.Sessions // fetch game session
                 .Include(s => s.Game)
@@ -78,23 +78,36 @@ namespace fizzbozo_be.Controllers
             }
         }
 
-        [HttpPost("{sessionId}/answer")]
-        public async Task<IActionResult> SubmitAnswer(Guid sessionid, [FromBody] AnswerSubmitDto dto)
+        [HttpPost("answer")]
+        public async Task<IActionResult> SubmitAnswer([FromQuery] Guid sessionId, [FromBody] AnswerSubmitDto dto)
         {
             var session = _context.Sessions
                 .Include(s => s.Game)
                 .ThenInclude(s => s.Rules)
-                .FirstOrDefault(r => r.Id == sessionid);
+                .FirstOrDefault(r => r.Id == sessionId);
             if (session == null) { 
                 return NotFound();
             }
             var expectedAnswer = GetExpectedAnswer(dto.Number, session.Game.Rules);
+            Console.WriteLine($"Number: {dto.Number}, Expected Answer: {expectedAnswer}");
+            // Check if the player's answer is a number and perform a direct comparison.
+            bool isCorrect;
+            if (int.TryParse(dto.PlayerAnswer, out int playerNumber))
+            {
+                isCorrect = playerNumber.ToString() == expectedAnswer;
+            }
+            else
+            {
+                // If it's not a number, perform the case-insensitive string comparison.
+                isCorrect = string.Equals(dto.PlayerAnswer, expectedAnswer, StringComparison.OrdinalIgnoreCase);
+            }
+
             var question = new GameQuestion
             {
                 Number = dto.Number,
                 ExpectedAnswer = expectedAnswer,
                 PlayerAnswer = dto.PlayerAnswer,
-                IsCorrect = dto.PlayerAnswer == expectedAnswer,
+                IsCorrect = isCorrect,
                 SessionId = dto.SessionId,
             };
             try
