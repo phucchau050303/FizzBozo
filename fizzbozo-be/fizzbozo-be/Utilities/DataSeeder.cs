@@ -18,7 +18,7 @@ namespace fizzbozo_be.Utilities
                     MinNumber = 3,
                     MaxNumber = 89,
                     RulesCount = 3,
-                    Rules = new[]
+                    Rules = new List<Rule>
                     {
                         new Rule {DividedBy = 3, AssociatedWord = "Fizz" },
                         new Rule {DividedBy = 8, AssociatedWord = "Buzz" },
@@ -32,7 +32,7 @@ namespace fizzbozo_be.Utilities
                     MinNumber = 1,
                     MaxNumber = 134,
                     RulesCount = 2,
-                    Rules = new[]
+                    Rules = new List<Rule>
                     {
                         new Rule {DividedBy = 7, AssociatedWord = "Oi" },
                         new Rule {DividedBy = 11, AssociatedWord = "Mate" },

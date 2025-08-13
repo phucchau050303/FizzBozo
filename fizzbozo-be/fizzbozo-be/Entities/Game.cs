@@ -15,7 +15,7 @@ namespace fizzbozo_be.Entities
         public DateTime? DeletedAt { get; set; }
 
         // Navigation properties
-        public ICollection<Rule> Rules { get; set; }
+        public ICollection<Rule> Rules { get; set; } 
         public ICollection<GameSession> GameSessions { get; set; }
     }
 }
