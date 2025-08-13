@@ -1,12 +1,20 @@
 <script>
 import api from '../services/api.js';
+import GameDetails from './GameDetails.vue';
 export default {
+  components: {
+    GameDetails
+  },
   name: 'GameManagement',
   data() {
     return {
       games: [], // This will hold the list of games
       loading: false,
-      error : null
+      error : null,
+      selectedGame: null, 
+      showDetailsModal: false  
+
+      
     };
   },
   async created() {
@@ -39,6 +47,14 @@ export default {
             alert('Failed to delete the game. Please try again.');
           }
         }
+    },
+    showGameDetails(gameId) {
+      this.selectedGame = gameId;
+      this.showDetailsModal = true;
+    },
+    handleModalClose() {
+      this.selectedGame = null;
+      this.showDetailsModal = false;
     },
   }
 }
@@ -86,13 +102,13 @@ export default {
                             <h5 class="card-text">Number Range</h5>
                             <p>{{ game.minNumber }}-{{ game.maxNumber }}</p>
                             <div class = "d-flex justify-content-between align-items-center">
-                                <router-link 
-                                :to="`/`" 
+                                <button
                                 class="btn btn-card"
                                 style="border-right: 1px solid #e0e0e0; border-radius: 10px 0px 0px 10px;"
+                                @click.stop="showGameDetails(game.id)"
                                 >
                                 Play
-                                </router-link>
+                                </button>
                                 <button 
                                 class="btn btn-card" 
                                 style="border-left: 1px solid #e0e0e0; border-radius: 0px 10px 10px 0px; color: red"
@@ -105,9 +121,14 @@ export default {
                     </div>
                 </div>
             </div>
-            
         </div>
-
+        <GameDetails 
+        v-if="selectedGame"
+        :key="selectedGame"
+        :gameId="selectedGame"
+        :show="showDetailsModal"
+        @close="handleModalClose"
+        />
     </div>
 </template>
 
