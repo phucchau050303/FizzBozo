@@ -6,6 +6,9 @@ In order to start installing the project, make sure to have these tools:
 - NodeJs
 - Npm
 - Docker Desktop
+- Visual Studio
+
+!!! This project only works on Windows due to using Visual Studio for backend.
 
 Open your Terminal to start installing
 
